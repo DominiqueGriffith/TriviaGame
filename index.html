@@ -12,21 +12,16 @@
 <html lang="en">
 
 <head>
+    <style>
+        p {
+          cursor: pointer;
+        }
+      </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trivia Game</title>
 
-    <h1>2000s Oscar Best Picture Trivia</h1>
-
-    <p>Remaining: 00:<span id = "timer">30</span></p>  
-
-    <p class = "dynamic">Which film won best picture for the year 2000?</p>
-    <p id = "correct" class = "dynamic">Gladiator</p>
-    <p class = "dynamic">Crouching Tiger, Hidden Dragon</p>
-    <p class = "dynamic">Erin Brockovich</p>
-    <p class = "dynamic">Traffic</p>
-
-
+   
     <!-- 2001
     <p>Gosford Park</p>
     <p>In the Bedroom</p>
@@ -66,7 +61,6 @@
     <p>Babel</p>
     <p>Letters from Iwo Jima</p>
     <p>Little Miss Sunshine</p>
-    <p>The Queen</p>
      <p class = "correct">The Departed</p>
 
     2007
@@ -75,12 +69,37 @@
     <p>Juno</p>
     <p>Michael Clayton</p>
     <p>There Will Be Blood</p> -->
-
+    <div id="timer"></div>
 
 
 </head>
 
 <body>
+   
+<div id="start">Start Quiz! </div>
+<div id="oscarquiz" style ="display: none;">
+    <h1>2000s Oscar Best Picture Trivia</h1>
+    <div id="qImage"><img src =""></div>
+    <div id="question"> <p>Question </p></div>
+    
+    <div id="choics">
+        <div class="choice" id="A" onclick= "checkAnswer('A')">A</div>
+        <div class="choice" id="B" onclick= "checkAnswer('B')">B</div>
+        <div class="choice" id="C" onclick= "checkAnswer('C')">C</div>
+        <div class="choice" id="D" onclick= "checkAnswer('D')">D</div>
+        <div class="choice" id="E" onclick= "checkAnswer('E')">E</div>
+        
+    </div>
+    <div id= "progress"> <div class="prog"></div>
+    </div>
+
+    <div id="scoreContainer" style = "display : none;" >
+        <img src=""><p>50%</p>
+
+
+  
+
+
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
