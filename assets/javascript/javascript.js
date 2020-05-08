@@ -1,4 +1,4 @@
-var timer = 31;
+var timer = 4;
 var intervalId;
 var score = document.getElementById("score")
 
@@ -8,18 +8,16 @@ var score = document.getElementById("score")
 // }
 
 
-
-
-
 var start = document.getElementById("start");
 var oscarQuiz = document.getElementById("oscarquiz");
-var quizImage = document.getElementById("question");
-
+var question = document.getElementById("question");
+var quizImage = document.getElementById("qimage");
 var choiceA = document.getElementById("A");
 var choiceB = document.getElementById("B");
 var choiceC = document.getElementById("C");
 var choiceD = document.getElementById("D");
 var choiceE = document.getElementById("E");
+
 
 // creates questions
 var questions = [
@@ -114,9 +112,12 @@ function decrement() {
     timer--;
     $("#timer").html("<div>" + timer + "</div>");
 
-    if (number === 0){
+    if (timer === 0){
         stop();
-        alert("time is up");
+        checkAnswer ();
+      
+
+        
     }
 }
 
@@ -131,9 +132,12 @@ start.addEventListener("click", startQuiz);
 // function to start the quiz. It calls the function run
 function startQuiz() {
     start.style.display = "none";
-    renderQuestion();
     oscarQuiz.style.display = "block";
     run();
+    renderQuestion();
+    
+    
+
 
 
 
@@ -152,29 +156,30 @@ function startQuiz() {
 
 function renderQuestion() {
     var q = questions[questionNum];
-    quizImage.innerHTML = "<img src=" + q.imgSrc + ">";
+    questionNum = 0;
+    // quizImage.innerHTML = "<img src=" + q.imgSrc + ">";
     question.innerHTML = "<p>" + q.question + "</p>";
-    choiceA.innerHTMl = q.choiceA;
-    choiceA.innerHTMl = q.choiceB;
-    choiceA.innerHTMl = q.choiceC;
-    choiceA.innerHTMl = q.choiceD;
-    choiceA.innerHTMl = q.choiceE;
+    choiceA.innerHTML = q.choiceA;
+    choiceB.innerHTML = q.choiceB;
+    choiceC.innerHTML = q.choiceC;
+    choiceD.innerHTML = q.choiceD;
+    choiceE.innerHTML = q.choiceE;
+
+    console.log(q.question);
 
 
 }
 
 
 
-// startQuiz();
 
 
 
+// questionNum = 0;
+// renderQuestion()
 
-questionNum = 0;
-renderQuestion()
-
-questionNum++
-renderQuestion()
+// questionNum++
+// renderQuestion()
 
 function checkAnswer(answer) {
     if (answer == questions[questionNum].correct) {
@@ -213,6 +218,9 @@ function scoreRender() {
 
     score.innerHTML += "<p>" + scorePercent + "</p>";
 }
+
+
+
 
 
 
