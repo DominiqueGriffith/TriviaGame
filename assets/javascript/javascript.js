@@ -1,16 +1,14 @@
-var timer = 30;
+var timer = 31;
 var intervalId;
+var score = document.getElementById("score")
 
-window.onload = function run() {
-    clearInterval(intervalId);
-    intervalId = setInterval(decrement, 1000);
-}
- 
-function decrement () {
+// window.onload = function run() {
+//     clearInterval(intervalId);
+//     intervalId = setInterval(decrement, 1000);
+// }
 
-    timer--;
-}
-$("#timer").html("<div>" + timer + "</div>");
+
+
 
 
 var start = document.getElementById("start");
@@ -23,72 +21,81 @@ var choiceC = document.getElementById("C");
 var choiceD = document.getElementById("D");
 var choiceE = document.getElementById("E");
 
+// creates questions
 var questions = [
-    {question: "Which film won best picture for the year 2000?",
-    imgSrc: "",
-    choiceA: "Gladiator",
-    choiceB: "Crouching Tiger, Hidden Dragon",
-    choiceC: "Erin Brockovich",
-    choiceD: "Traffic",
-    choiceE: "Chocolat",
+    {
+        question: "Which film won best picture for the year 2000?",
+        imgSrc: "",
+        choiceA: "Gladiator",
+        choiceB: "Crouching Tiger, Hidden Dragon",
+        choiceC: "Erin Brockovich",
+        choiceD: "Traffic",
+        choiceE: "Chocolat",
 
     },
-    {question: "Which film won best picture for the year 2001?",
-    imgSrc: "",
-    choiceA: "In the Bedroom",
-    choiceB: "A Beautiful Mind",
-    choiceC: "The Lord of the Rings: The Fellowship of the Ring",
-    choiceD: "Moulin Rouge!",
-    choiceE: "Godsford Park",
+    {
+        question: "Which film won best picture for the year 2001?",
+        imgSrc: "",
+        choiceA: "In the Bedroom",
+        choiceB: "A Beautiful Mind",
+        choiceC: "The Lord of the Rings: The Fellowship of the Ring",
+        choiceD: "Moulin Rouge!",
+        choiceE: "Godsford Park",
     },
 
-    {question: "Which film won best picture for the year 2002?",
-    imgSrc: "",
-    choiceA: "Gangs of New York",
-    choiceB: "Chicago",
-    choiceC: "The Hours",
-    choiceD: "The Lord of the Rings: The Two Towers",
-    choiceE: "",
+    {
+        question: "Which film won best picture for the year 2002?",
+        imgSrc: "",
+        choiceA: "Gangs of New York",
+        choiceB: "Chicago",
+        choiceC: "The Hours",
+        choiceD: "The Lord of the Rings: The Two Towers",
+        choiceE: "",
     },
-    {question: "Which film won best picture for the year 2003?",
-    imgSrc: "",
-    choiceA: "Lost in Translation",
-    choiceB: "Master and Commander: The Far Side of the World",
-    choiceC: "Mystic River",
-    choiceD: "The Lord of the Rings: The Return of the King!",
-    choiceE: "",
+    {
+        question: "Which film won best picture for the year 2003?",
+        imgSrc: "",
+        choiceA: "Lost in Translation",
+        choiceB: "Master and Commander: The Far Side of the World",
+        choiceC: "Mystic River",
+        choiceD: "The Lord of the Rings: The Return of the King!",
+        choiceE: "",
     },
-    {question: "Which film won best picture for the year 2004?",
-    imgSrc: "",
-    choiceA: "Million Dollar Baby",
-    choiceB: "The Aviator",
-    choiceC: "Finding Neverland",
-    choiceD: "Ray",
-    choiceE: "",
+    {
+        question: "Which film won best picture for the year 2004?",
+        imgSrc: "",
+        choiceA: "Million Dollar Baby",
+        choiceB: "The Aviator",
+        choiceC: "Finding Neverland",
+        choiceD: "Ray",
+        choiceE: "",
     },
-    {question: "Which film won best picture for the year 2005?",
-    imgSrc: "",
-    choiceA: "Crash",
-    choiceB: "Brokeback Mountain",
-    choiceC: "Capote",
-    choiceD: "Good Night, and Good Luck",
-    choiceE: "",
+    {
+        question: "Which film won best picture for the year 2005?",
+        imgSrc: "",
+        choiceA: "Crash",
+        choiceB: "Brokeback Mountain",
+        choiceC: "Capote",
+        choiceD: "Good Night, and Good Luck",
+        choiceE: "",
     },
-    {question: "Which film won best picture for the year 2006?",
-    imgSrc: "",
-    choiceA: "Babel",
-    choiceB: "Letters from Iwo Jima",
-    choiceC: "Little Miss Sunshine",
-    choiceD: "The Departed",
-    choiceE: "",
+    {
+        question: "Which film won best picture for the year 2006?",
+        imgSrc: "",
+        choiceA: "Babel",
+        choiceB: "Letters from Iwo Jima",
+        choiceC: "Little Miss Sunshine",
+        choiceD: "The Departed",
+        choiceE: "",
     },
-    {question: "Which film won best picture for the year 2007?",
-    imgSrc: "",
-    choiceA: "Atonement",
-    choiceB: "No Country for Old Men",
-    choiceC: "Juno",
-    choiceD: "Michael Clayton",
-    choiceE: "",
+    {
+        question: "Which film won best picture for the year 2007?",
+        imgSrc: "",
+        choiceA: "Atonement",
+        choiceB: "No Country for Old Men",
+        choiceC: "Juno",
+        choiceD: "Michael Clayton",
+        choiceE: "",
     },
 ]
 
@@ -97,14 +104,53 @@ var questionNum = 0;
 
 // var correct = document.getElementById ("#correct");
 
+// function to set up 30 second timer
+function run() {
+    clearInterval(intervalId);
+    intervalId = setInterval(decrement, 1000);
+}
+function decrement() {
+
+    timer--;
+    $("#timer").html("<div>" + timer + "</div>");
+
+    if (number === 0){
+        stop();
+        alert("time is up");
+    }
+}
+
+function stop (){
+    clearInterval(intervalId);
+}
+
+
+
+start.addEventListener("click", startQuiz);
+
+// function to start the quiz. It calls the function run
+function startQuiz() {
+    start.style.display = "none";
+    renderQuestion();
+    oscarQuiz.style.display = "block";
+    run();
+
+
+
+}
 
 
 
 
 
 
- 
-function renderQuestion(){
+
+
+
+
+// renders questions
+
+function renderQuestion() {
     var q = questions[questionNum];
     quizImage.innerHTML = "<img src=" + q.imgSrc + ">";
     question.innerHTML = "<p>" + q.question + "</p>";
@@ -113,9 +159,16 @@ function renderQuestion(){
     choiceA.innerHTMl = q.choiceC;
     choiceA.innerHTMl = q.choiceD;
     choiceA.innerHTMl = q.choiceE;
-    
+
 
 }
+
+
+
+// startQuiz();
+
+
+
 
 questionNum = 0;
 renderQuestion()
@@ -123,15 +176,54 @@ renderQuestion()
 questionNum++
 renderQuestion()
 
+function checkAnswer(answer) {
+    if (answer == questions[questionNum].correct) {
+        score++
+        answerIsCorrect();
+    } else {
+        answerIsWrong();
+    }
+    if (questionNum < lastQuestionNum) {
+        questionNum++;
+        questionRender();
+
+
+    } else {
+        clearInterval(Timer);
+        scoreRender();
+
+    }
+
+
+}
+
+function answerIsCorrect() {
+    document.getElementById("qImage").scr = "";
+}
+
+function answerIsWrong() {
+    document.getElementById("qImage").scr = "";
+}
+
+// score render
+function scoreRender() {
+    score.style.display = "block";
+
+    var scorePercent = Math.round(100 * score / questions.length);
+
+    score.innerHTML += "<p>" + scorePercent + "</p>";
+}
+
+
 
 // $(".dynamic").on("click", function() {
-   
+
 //     if (correct.clicked == true) {
 //         alert("you're correct")
     //   var  youCorrect = document.getElementsById('correct');
     //   correct = youCorrect;
     //     youCorrect[0,1,2,3,4,5].textContent = "You're correct!";
-      
+
 
 //     }
 
@@ -142,12 +234,12 @@ renderQuestion()
 
 // }
 
-{/* <h3 class = "dynamic">Which film won best picture for the year 2000?</h3>
-<p id = "correct" class = "dynamic">Gladiator</p>
-<p class = "dynamic">Crouching Tiger, Hidden Dragon</p>
-<p class = "dynamic">Erin Brockovich</p>
-<p class = "dynamic">Traffic</p>
-<p class = "dynamic">Chocolat</p> */}
+// {/* <h3 class = "dynamic">Which film won best picture for the year 2000?</h3>
+// <p id = "correct" class = "dynamic">Gladiator</p>
+// <p class = "dynamic">Crouching Tiger, Hidden Dragon</p>
+// <p class = "dynamic">Erin Brockovich</p>
+// <p class = "dynamic">Traffic</p>
+// <p class = "dynamic">Chocolat</p> */}
 
 // gameOne = document.getElementsByClassName('dynamic');
 // gameOne[0].textContent = "Which film won best picture for the year 2001?"
@@ -200,4 +292,4 @@ renderQuestion()
 // gameSeven [5].textContent = "Michael Clayton"
 
 
-run ();
+// run ();
