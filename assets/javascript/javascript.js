@@ -1,11 +1,8 @@
-var timer = 6;
+var timer = 30;
 var intervalId;
-var score = 0
+var score = 0;
+const scoreDiv = document.getElementById("scoreContainer");
 
-// window.onload = function run() {
-//     clearInterval(intervalId);
-//     intervalId = setInterval(decrement, 1000);
-// }
 
 
 var start = document.getElementById("start");
@@ -17,6 +14,7 @@ var choiceB = document.getElementById("B");
 var choiceC = document.getElementById("C");
 var choiceD = document.getElementById("D");
 var choiceE = document.getElementById("E");
+var Answer = document.getElementById("progress");
 
 
 // creates questions
@@ -30,6 +28,7 @@ var questions = [
         choiceD: "Traffic",
         choiceE: "Chocolat",
         correct: "A",
+        correctTwo: "Gladiator",
 
     },
     {
@@ -41,6 +40,7 @@ var questions = [
         choiceD: "Moulin Rouge!",
         choiceE: "Godsford Park",
         correct: "B",
+        correctTwo: "A Beautiful Mind",
     },
 
     {
@@ -52,6 +52,7 @@ var questions = [
         choiceD: "The Lord of the Rings: The Two Towers",
         choiceE: "The Pianst",
         correct: "B",
+        correctTwo: "Chicago",
     },
     {
         question: "Which film won best picture for the year 2003?",
@@ -62,6 +63,7 @@ var questions = [
         choiceD: "The Lord of the Rings: The Return of the King",
         choiceE: "Seabiscut",
         correct:"D",
+        correctTwo: "The Lord of the Rings: The Return of the King",
     },
     {
         question: "Which film won best picture for the year 2004?",
@@ -72,6 +74,7 @@ var questions = [
         choiceD: "Ray",
         choiceE: "Sideways",
         correct: "A",
+        correctTwo: "Million Dollar Baby"
     },
     {
         question: "Which film won best picture for the year 2005?",
@@ -82,6 +85,7 @@ var questions = [
         choiceD: "Good Night, and Good Luck",
         choiceE: "Munich",
         correct: "A",
+        correctTwo: "Crash"
     },
     {
         question: "Which film won best picture for the year 2006?",
@@ -92,6 +96,7 @@ var questions = [
         choiceD: "The Departed",
         choiceE: "The Queen",
         correct: "D",
+        correctTwo: "The Departed"
     },
     {
         question: "Which film won best picture for the year 2007?",
@@ -102,6 +107,7 @@ var questions = [
         choiceD: "Michael Clayton",
         choiceE: "There Will Be Blood",
         correct: "B",
+        correctTwo: "No Country for Old Men"
     },
 ]
 
@@ -114,38 +120,33 @@ function checkAnswer(answer) {
     if (answer == questions[questionNum].correct) {
         // stop();
         score++
+        renderAnswer();
         answerIsCorrect();
     } else {
         // stop();
+        renderAnswer();
         answerIsWrong();
     } 
 
-    // if (questionNum < lastQuestionNum) {
-    //     timer = 6;
-    //     questionNum++;
-    // //    reset ();
-    // //    run();
-    //    renderQuestion();
-    //    checkAnswer ();
     
-        
-    // }else{ 
-    //     // end quiz}
-    //     clearInterval(timer);
-    //     scoreRender();
-
-    // }
 }
 
 function answerIsCorrect() {
    
     
     if (questionNum < lastQuestionNum) {
-        gifImages();
-         questionNum++;
+        // gifImages();
+        // score ++;
+        // alert("You are correct! It was " + questions[questionNum].correctTwo)
+       
+        questionNum++;
+        
+        
         reset ();
         run();
         renderQuestion();
+
+        // hideAnswer();
         
         // startQuiz (); 
 
@@ -158,16 +159,18 @@ function answerIsCorrect() {
 }
 
 function answerIsWrong() {
-    // if (answer != questions[questionNum].correct && questionNum === 0)
-    // document.getElementById("qImage").scr = "https://giphy.com/gifs/d7mMzaGDYkz4ZBziP6/html5";
+    
 
     if (questionNum < lastQuestionNum) {
+         
         questionNum++;
+        
+       
         reset ();
         run ();
         renderQuestion();
+
        
-        // startQuiz();
 
     }
     else {
@@ -178,15 +181,17 @@ function answerIsWrong() {
 
 
 
-function gifImages(){
-    var src1 = document.getElementById("qImage").src = "gladiator.png";
+function renderAnswer(){
+        var a = questions[questionNum].correctTwo;
 
-    // if (answer == questions[questionNum].correct && questionNum === 0);
-    // src1.setAttribute("src", "asset/images/gladiator.png");
-    $("#qImage").append(src1);
+        Answer.innerHTML = "<h1>" + "The answer is " + a + "</h1>";
+    }
+
    
+
+
+  
     
-}
 
 // renders questions
 
@@ -206,7 +211,6 @@ function renderQuestion() {
 
 }
 
-// var correct = document.getElementById ("#correct");
 
 // function to set up 30 second timer
 function run() {
@@ -226,18 +230,7 @@ function decrement() {
         
     }
 
-    // else if (timer === 0 && questionNum < lastQuestionNum) {
-    //     questionNum++;
-    //     renderQuestion();
-
-
-    // }
-
-    // else {
-    //     clearInterval(Timer);
-    //     scoreRender();
-
-    // }
+  
 }
 
 function stop (){
@@ -270,51 +263,13 @@ function startQuiz() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// questionNum = 0;
-// renderQuestion()
-
-// questionNum++
-// renderQuestion()
-
-
-
-
-    // timer = 0;
-    
-
-
-    // } else {
-    //     // clearInterval(Timer);
-    //     // scoreRender();
-
-    
-
-
-
-
-
 // score render
 function scoreRender() {
-    score.style.display = "block";
+    scoreDiv.style.display = "block";
 
-    var scorePercent = Math.round(100 * score / questions.length);
+    const scorePerCent = Math.round(100 * score/questions.length);
 
-    score.innerHTML += "<p>" + scorePercent + "</p>";
+    scoreDiv.innerHTML += "<h1>" + "You scored " + scorePerCent + "% of 100%" + "</h1>";
 }
 
 
@@ -399,3 +354,4 @@ function scoreRender() {
 
 
 // run ();
+

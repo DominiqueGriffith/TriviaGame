@@ -13,99 +13,110 @@
 
 <head>
     <style>
-        p, div {
-          cursor: pointer;
+        p,
+        div {
+            cursor: pointer;
         }
-      </style>
+    </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trivia Game</title>
-
-   
-    <!-- 2001
-    <p>Gosford Park</p>
-    <p>In the Bedroom</p>
-    <p class = "correct">A Beautiful Mind</p>
-    <p>The Lord of the Rings: The Fellowship of the Ring</p>
-    <p>Moulin Rouge!</p>
-
-    2002
-    <p>Gangs of New York</p>
-    <p class = "correct">Chicago</p>
-    <p>The Hours</p>
-    <p>The Lord of the Rings: The Two Towers</p>
-    <p>The Pianist</p>
-
-    2003
-    <p>Lost in Translation</p>
-    <p>Master and Commander: The Far Side of the World</p>
-    <p>Mystic River</p>
-    <p class = "correct">The Lord of the Rings: The Return of the King</p>
-    <p>Seabiscuit</p>
-
-    2004
-    <p class = "correct">Million Dollar Baby</p>
-    <p>The Aviator</p>
-    <p>Finding Neverland</p>
-    <p>Ray</p>
-    <p>Sideways</p>
-
-    2005
-    <p class = "correct">Crash</p>
-    <p>Brokeback Mountain</p>
-    <p>Capote</p>
-    <p>Good Night, and Good Luck</p>
-    <p>Munich</p>
-
-    2006
-    <p>Babel</p>
-    <p>Letters from Iwo Jima</p>
-    <p>Little Miss Sunshine</p>
-     <p class = "correct">The Departed</p>
-
-    2007
-    <p>Atonement</p>
-    <p class = "correct">No Country for Old Men</p>
-    <p>Juno</p>
-    <p>Michael Clayton</p>
-    <p>There Will Be Blood</p> -->
+    <link href="https://fonts.googleapis.com/css2?family=Marcellus+SC&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     
 
 
 </head>
 
 <body>
+
    
-<div id="start">Start Quiz! </div>
+    <button id="start" class= "btn btn-warning">Start Quiz! </button>
+    <!-- <button id="button">click me </button> -->
+    <div id="oscarquiz" style="display: none;">
 
-<div id="oscarquiz" style ="display: none;">
-    <h1 id="timer"><h1>
-    <h1>2000s Oscar Best Picture Trivia</h1>
-    
-    <div id="question"> <p>Question </p></div>
-    <div id="qImage"><img src =""></div>
-    <div id="choices">
-        <div class="choice" id="A" onclick= "checkAnswer('A')">A</div>
-        <div class="choice" id="B" onclick= "checkAnswer('B')">B</div>
-        <div class="choice" id="C" onclick= "checkAnswer('C')">C</div>
-        <div class="choice" id="D" onclick= "checkAnswer('D')">D</div>
-        <div class="choice" id="E" onclick= "checkAnswer('E')">E</div>
-        
-    </div>
-    <div id= "progress"> <div class="prog"></div>
-    </div>
+        <h1 id="timer" class="text-center">
+            <h1>
+                <h1 class="text-center">2000s Oscar Best Picture Trivia</h1>
 
-    <div id="score" style = "display : none;" >
-        <img src=""><p>50%</p>
+                <div id="question" class="text-center">
+                    <p>Question </p>
+                </div>
+
+                <div id="qImage"></div>
+
+                <div id="choices" class="text-center">
+                    <div class="choice" id="A" onclick="checkAnswer('A')">A</div>
+                    <div class="choice" id="B" onclick="checkAnswer('B')">B</div>
+                    <div class="choice" id="C" onclick="checkAnswer('C')">C</div>
+                    <div class="choice" id="D" onclick="checkAnswer('D')">D</div>
+                    <div class="choice" id="E" onclick="checkAnswer('E')">E</div>
+
+                </div>
+
+                <br>
+
+                <br>
+                
+                
+                <h1 id="progress" class="text-center">
+         
+                </h1>
+
+                <h1 id="scoreContainer" class="text-center" style="display: none"></h1>
+                    
 
 
-  
 
 
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src=assets/javascript/javascript.js></script>
+
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+                    <script type="text/javascript" src=assets/javascript/javascript.js></script>
+                    
+                    <!-- // $("button").on("click", function() {
+                    //     // function gifImage (){
+                    //         // start.style.display = "none";
+                    //         // oscarQuiz.style.display = "block";
+                            
+                    //         var movie = $(this).attr("data-movie");
+                    //         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + movie + "&apikey=4W7XWGQpEGCzL1u7bQT0ge1t0YVPVRTS&limit=1";
+                            
+                    //         $.ajax({
+                    //           url: queryURL,
+                    //           method: "GET"
+                    //         }).then(function (response) {
+                    //           console.log(response);
+                    //         for (var i=0; i <response.data.length; i++){
+                    //           var gifDiv = $("<div>");
+                            
+                    //           var movieImage = $("<img>");
+                            
+                    //           movieImage.attr("src",response.data[i].images.fixed_height.url);
+                    //           gifDiv.prepend(movieImage);
+                    //           $('qImage').append(gifDiv);
+                    //         }
+                    //         })
+                    // // }
+                    
+                    // });
+                    
+                    
+                    
+                     -->
+                    
+                    
+                    
+
+
+
+                    
+                   
+
+
+
 </body>
 
 </html>
