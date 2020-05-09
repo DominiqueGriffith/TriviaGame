@@ -1,6 +1,6 @@
-var timer = 4;
+var timer = 6;
 var intervalId;
-var score = document.getElementById("score")
+var score = 0
 
 // window.onload = function run() {
 //     clearInterval(intervalId);
@@ -29,6 +29,7 @@ var questions = [
         choiceC: "Erin Brockovich",
         choiceD: "Traffic",
         choiceE: "Chocolat",
+        correct: "A",
 
     },
     {
@@ -39,6 +40,7 @@ var questions = [
         choiceC: "The Lord of the Rings: The Fellowship of the Ring",
         choiceD: "Moulin Rouge!",
         choiceE: "Godsford Park",
+        correct: "B",
     },
 
     {
@@ -48,7 +50,8 @@ var questions = [
         choiceB: "Chicago",
         choiceC: "The Hours",
         choiceD: "The Lord of the Rings: The Two Towers",
-        choiceE: "",
+        choiceE: "The Pianst",
+        correct: "B",
     },
     {
         question: "Which film won best picture for the year 2003?",
@@ -56,8 +59,9 @@ var questions = [
         choiceA: "Lost in Translation",
         choiceB: "Master and Commander: The Far Side of the World",
         choiceC: "Mystic River",
-        choiceD: "The Lord of the Rings: The Return of the King!",
-        choiceE: "",
+        choiceD: "The Lord of the Rings: The Return of the King",
+        choiceE: "Seabiscut",
+        correct:"D",
     },
     {
         question: "Which film won best picture for the year 2004?",
@@ -66,7 +70,8 @@ var questions = [
         choiceB: "The Aviator",
         choiceC: "Finding Neverland",
         choiceD: "Ray",
-        choiceE: "",
+        choiceE: "Sideways",
+        correct: "A",
     },
     {
         question: "Which film won best picture for the year 2005?",
@@ -75,7 +80,8 @@ var questions = [
         choiceB: "Brokeback Mountain",
         choiceC: "Capote",
         choiceD: "Good Night, and Good Luck",
-        choiceE: "",
+        choiceE: "Munich",
+        correct: "A",
     },
     {
         question: "Which film won best picture for the year 2006?",
@@ -84,7 +90,8 @@ var questions = [
         choiceB: "Letters from Iwo Jima",
         choiceC: "Little Miss Sunshine",
         choiceD: "The Departed",
-        choiceE: "",
+        choiceE: "The Queen",
+        correct: "D",
     },
     {
         question: "Which film won best picture for the year 2007?",
@@ -93,12 +100,111 @@ var questions = [
         choiceB: "No Country for Old Men",
         choiceC: "Juno",
         choiceD: "Michael Clayton",
-        choiceE: "",
+        choiceE: "There Will Be Blood",
+        correct: "B",
     },
 ]
 
 var lastQuestionNum = questions.length - 1;
 var questionNum = 0;
+
+
+
+function checkAnswer(answer) {
+    if (answer == questions[questionNum].correct) {
+        // stop();
+        score++
+        answerIsCorrect();
+    } else {
+        // stop();
+        answerIsWrong();
+    } 
+
+    // if (questionNum < lastQuestionNum) {
+    //     timer = 6;
+    //     questionNum++;
+    // //    reset ();
+    // //    run();
+    //    renderQuestion();
+    //    checkAnswer ();
+    
+        
+    // }else{ 
+    //     // end quiz}
+    //     clearInterval(timer);
+    //     scoreRender();
+
+    // }
+}
+
+function answerIsCorrect() {
+   
+    
+    if (questionNum < lastQuestionNum) {
+        gifImages();
+         questionNum++;
+        reset ();
+        run();
+        renderQuestion();
+        
+        // startQuiz (); 
+
+    }
+    else {
+        clearInterval(timer);
+        scoreRender();
+    }
+        
+}
+
+function answerIsWrong() {
+    // if (answer != questions[questionNum].correct && questionNum === 0)
+    // document.getElementById("qImage").scr = "https://giphy.com/gifs/d7mMzaGDYkz4ZBziP6/html5";
+
+    if (questionNum < lastQuestionNum) {
+        questionNum++;
+        reset ();
+        run ();
+        renderQuestion();
+       
+        // startQuiz();
+
+    }
+    else {
+        clearInterval(timer);
+        scoreRender();
+    }
+}
+
+
+
+function gifImages(){
+    var src1 = document.getElementById("qImage").src = "gladiator.png";
+
+    // if (answer == questions[questionNum].correct && questionNum === 0);
+    // src1.setAttribute("src", "asset/images/gladiator.png");
+    $("#qImage").append(src1);
+   
+    
+}
+
+// renders questions
+
+function renderQuestion() {
+    var q = questions[questionNum];
+    // questionNum = 0;
+    // quizImage.innerHTML = "<img src=" + q.imgSrc + ">";
+    question.innerHTML = "<p>" + q.question + "</p>";
+    choiceA.innerHTML = q.choiceA;
+    choiceB.innerHTML = q.choiceB;
+    choiceC.innerHTML = q.choiceC;
+    choiceD.innerHTML = q.choiceD;
+    choiceE.innerHTML = q.choiceE;
+
+    console.log(q.question);
+
+
+}
 
 // var correct = document.getElementById ("#correct");
 
@@ -114,17 +220,33 @@ function decrement() {
 
     if (timer === 0){
         stop();
-        checkAnswer ();
-      
+        answerIsWrong ();
+        
 
         
     }
+
+    // else if (timer === 0 && questionNum < lastQuestionNum) {
+    //     questionNum++;
+    //     renderQuestion();
+
+
+    // }
+
+    // else {
+    //     clearInterval(Timer);
+    //     scoreRender();
+
+    // }
 }
 
 function stop (){
     clearInterval(intervalId);
 }
 
+function reset (){
+    timer = 30;
+}
 
 
 start.addEventListener("click", startQuiz);
@@ -135,6 +257,7 @@ function startQuiz() {
     oscarQuiz.style.display = "block";
     run();
     renderQuestion();
+   
     
     
 
@@ -152,23 +275,10 @@ function startQuiz() {
 
 
 
-// renders questions
-
-function renderQuestion() {
-    var q = questions[questionNum];
-    questionNum = 0;
-    // quizImage.innerHTML = "<img src=" + q.imgSrc + ">";
-    question.innerHTML = "<p>" + q.question + "</p>";
-    choiceA.innerHTML = q.choiceA;
-    choiceB.innerHTML = q.choiceB;
-    choiceC.innerHTML = q.choiceC;
-    choiceD.innerHTML = q.choiceD;
-    choiceE.innerHTML = q.choiceE;
-
-    console.log(q.question);
 
 
-}
+
+
 
 
 
@@ -181,34 +291,22 @@ function renderQuestion() {
 // questionNum++
 // renderQuestion()
 
-function checkAnswer(answer) {
-    if (answer == questions[questionNum].correct) {
-        score++
-        answerIsCorrect();
-    } else {
-        answerIsWrong();
-    }
-    if (questionNum < lastQuestionNum) {
-        questionNum++;
-        questionRender();
 
 
-    } else {
-        clearInterval(Timer);
-        scoreRender();
 
-    }
+    // timer = 0;
+    
 
 
-}
+    // } else {
+    //     // clearInterval(Timer);
+    //     // scoreRender();
 
-function answerIsCorrect() {
-    document.getElementById("qImage").scr = "";
-}
+    
 
-function answerIsWrong() {
-    document.getElementById("qImage").scr = "";
-}
+
+
+
 
 // score render
 function scoreRender() {
